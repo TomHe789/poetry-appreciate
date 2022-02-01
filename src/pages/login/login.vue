@@ -5,45 +5,73 @@
         <span>诗词鉴赏登录页</span>
         <span @click="showDialog">账号注册</span>
       </div>
-      <el-input
-        v-model="username"
-        placeholder="请输入用户名"
-        clearable
-      ></el-input>
-      <el-input
-        v-model="password"
-        placeholder="请输入密码"
-        show-password
-        clearable
-      ></el-input>
-      <el-button>确认登录</el-button>
+      <input-form @validate-form="validateForm" :isInline="false"></input-form>
+      <el-button :disabled="isDisabled">确认登录</el-button>
     </div>
-    <register @showDialog="showDialog" :dialogVisible="dialogVisible"></register>
+    <register-dialog
+      @showDialog="showDialog"
+      :dialogVisible="dialogVisible"
+    ></register-dialog>
   </div>
 </template>
 
 <script>
-import register from './components/register'
+import registerDialog from "./components/register-dialog";
+import inputForm from "./components/input-form";
 
 export default {
   name: "Login",
   data() {
     return {
-      username: "",
-      password: "",
       dialogVisible: false,
-      
+      isDisabled: true,
+      formInfo: {
+        username: "",
+        password: "",
+      },
+      rules: {
+        username: [
+          { required: true, message: "用户名不能为空", trigger: "blur" },
+          {
+            min: 3,
+            max: 10,
+            message: "用户名长度在 3 到 10 个字符",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          { required: true, message: "密码不能为空", trigger: "blur" },
+          {
+            min: 6,
+            max: 16,
+            message: "密码长度在 6 到 16 个字符",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
-    showDialog(){
-      this.dialogVisible = !this.dialogVisible
-    }
+    showDialog() {
+      this.dialogVisible = !this.dialogVisible;
+    },
+    // 当表单数据通过校验时 取消禁用确认按钮
+    validateForm(legal) {
+      this.isDisabled = !legal;
+    },
+  },
+  watch: {
+    formInfo: {
+      handler() {
+        this.validate();
+      },
+      deep: true,
+    },
   },
   components: {
-    register
-  }
-  
+    registerDialog,
+    inputForm,
+  },
 };
 </script>
 
@@ -90,12 +118,21 @@ export default {
       }
     }
 
-    .el-input {
+    /deep/.el-form-item__label {
+      display: none;
+    }
+
+    /deep/.el-form-item__content {
+      margin-left: 0 !important;
+    }
+
+    /deep/.el-input {
       width: 375px;
-      /deep/.el-input__inner {
-        height: 50px;
-        font-size: 18px;
-      }
+    }
+
+    /deep/.el-input__inner {
+      height: 50px;
+      font-size: 16px;
     }
 
     .el-button {
