@@ -15,7 +15,7 @@ export default {
   router,
   created(){
     // 接口测试
-    // this.$http.get('/api/test').then((res) => {console.log(res)})
+    this.$http.get('/api/test').then((res) => {console.log(res)})
   }
 }
 </script>
