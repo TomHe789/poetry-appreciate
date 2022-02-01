@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router'
 
-import Login from '@src/views/Login.vue'
-import Home from '@src/views/Home.vue'
-import Rate from '@src/views/Rate.vue'
+import Login from '@src/pages/login/login.vue'
+import Home from '@src/pages/home/home.vue'
+import Rate from '@src/pages/rate/rate.vue'
 
 const routes = [
   {path: '/', redirect: '/login'},

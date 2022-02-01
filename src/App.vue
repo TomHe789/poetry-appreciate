@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app-container">
     <router-view></router-view>
   </div>
 </template>
@@ -12,9 +12,17 @@ export default {
   name: 'App',
   components: {
   },
-  router
+  router,
+  created(){
+    // 接口测试
+    // this.$http.get('/api/test').then((res) => {console.log(res)})
+  }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+  .app-container{
+    width: 100%;
+    height: 100%;
+  }
 </style>
