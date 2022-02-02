@@ -12,11 +12,7 @@ export default {
   name: 'App',
   components: {
   },
-  router,
-  created(){
-    // 接口测试
-    this.$http.get('/api/test').then((res) => {console.log(res)})
-  }
+  router
 }
 </script>
 

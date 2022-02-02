@@ -5,8 +5,14 @@
         <span>诗词鉴赏登录页</span>
         <span @click="showDialog">账号注册</span>
       </div>
-      <input-form @validate-form="validateForm" :isInline="false"></input-form>
-      <el-button :disabled="isDisabled">确认登录</el-button>
+      <input-form
+        ref="inputForm"
+        @validate-form="validateForm"
+        :isInline="false"
+      ></input-form>
+      <el-button :disabled="isDisabled" @click="clickHandle"
+        >确认登录</el-button
+      >
     </div>
     <register-dialog
       @showDialog="showDialog"
@@ -18,13 +24,14 @@
 <script>
 import registerDialog from "./components/register-dialog";
 import inputForm from "./components/input-form";
+import API from "@src/api/login";
 
 export default {
   name: "Login",
   data() {
     return {
       dialogVisible: false,
-      isDisabled: true
+      isDisabled: true,
     };
   },
   methods: {
@@ -35,9 +42,29 @@ export default {
     validateForm(legal) {
       this.isDisabled = !legal;
     },
+    async isAuthLogin(){
+      let {username, password} = this.$refs.inputForm.formInfo
+      let flag = false;
+      let res = await this.$http.get(API.getUserInfo);
+      console.log(res.data)
+      res.data.forEach((item, index) => {
+        if(item.username === username && item.password === password){
+          flag = true;
+        }
+      })
+      return flag;
+    },
+    clickHandle() {
+      this.isAuthLogin().then((res) => {
+        if(res) {
+          console.log('登录成功')
+        } else {
+          console.log('登录失败')
+        }
+      })
+    },
   },
-  watch: {
-  },
+  watch: {},
   components: {
     registerDialog,
     inputForm,
