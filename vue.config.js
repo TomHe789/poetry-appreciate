@@ -9,10 +9,12 @@ module.exports = {
     },
   },
   devServer: {
+    // 设置端口
+    port: 3080,
     // 代理设置
     proxy: {
       "/api": {
-        target: "http://localhost:3200/", //源地址
+        target: "http://localhost:3000/", //源地址
         changeOrigin: true, //改变源
         pathRewrite: {
           "^/api": "", //路径重写

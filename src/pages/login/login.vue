@@ -24,31 +24,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      isDisabled: true,
-      formInfo: {
-        username: "",
-        password: "",
-      },
-      rules: {
-        username: [
-          { required: true, message: "用户名不能为空", trigger: "blur" },
-          {
-            min: 3,
-            max: 10,
-            message: "用户名长度在 3 到 10 个字符",
-            trigger: "blur",
-          },
-        ],
-        password: [
-          { required: true, message: "密码不能为空", trigger: "blur" },
-          {
-            min: 6,
-            max: 16,
-            message: "密码长度在 6 到 16 个字符",
-            trigger: "blur",
-          },
-        ],
-      },
+      isDisabled: true
     };
   },
   methods: {
@@ -61,12 +37,6 @@ export default {
     },
   },
   watch: {
-    formInfo: {
-      handler() {
-        this.validate();
-      },
-      deep: true,
-    },
   },
   components: {
     registerDialog,

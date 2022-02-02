@@ -64,6 +64,7 @@ export default {
     // 校验表单数据
     validate() {
       this.$refs.ruleForm.validate((valid) => {
+        // console.log("123123123", valid);
         this.$emit("validate-form", valid);
       });
     },
@@ -71,6 +72,12 @@ export default {
   watch: {
     formInfo: {
       handler() {
+        // if (this.formInfo.username === "" && this.formInfo.password === "") {
+        //   console.log("都为空");
+        //   this.$emit("validate-form", false);
+        // } else {
+        //   this.validate();
+        // }
         this.validate();
       },
       deep: true,
