@@ -7,12 +7,14 @@
 <script>
 
 import router from './router'
+import store from '@src/vuex/store'
 
 export default {
   name: 'App',
   components: {
   },
-  router
+  router,
+  store
 }
 </script>
 
