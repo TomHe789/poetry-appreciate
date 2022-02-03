@@ -1,14 +1,28 @@
 <template>
-  <p>home page...</p>
+  <div class="home-container">
+    <!-- <page-header></page-header> -->
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'Home'
+import pageHeader from "@src/components/page-header";
 
-}
+export default {
+  name: "Home",
+  data() {
+    return {}
+  },
+  components: {
+    pageHeader,
+  },
+};
 </script>
 
-<style>
-
+<style lang="less">
+  .home-container {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #afa;
+  }
 </style>

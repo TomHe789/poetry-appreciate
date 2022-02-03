@@ -5,7 +5,7 @@ import * as mutations from './mutations'
 import * as actions from './actions'
 Vue.use(Vuex)
 
-const store = new Vuex.store({
+const store = new Vuex.Store({
   state: {
     currentUser: null,
     isLogin: false,
