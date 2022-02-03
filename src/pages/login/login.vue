@@ -57,9 +57,12 @@ export default {
     clickHandle() {
       this.isAuthLogin().then((res) => {
         if(res) {
-          console.log('登录成功')
+          this.$message({
+            message: '恭喜您，登录成功！',
+            type: 'success'
+          });
         } else {
-          console.log('登录失败')
+          this.$message.error('用户名或密码错误，请检查后重新输入');
         }
       })
     },
