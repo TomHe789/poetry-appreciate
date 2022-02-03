@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container">
+  <div class="menu-container">
     <el-menu
       :default-active="activeIndex2"
       mode="horizontal"
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "pageHeader",
+  name: "pageMenu",
   data() {
     return {
       activeIndex: "1",
@@ -40,9 +40,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header-container {
-  width: 80%;
+.menu-container {
+  width: 100%;
   margin: 0 auto;
   background-color: #aaf;
+
+  .el-menu-item{
+    font-size: 18px;
+  }
 }
 </style>
