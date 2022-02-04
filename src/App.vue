@@ -31,7 +31,7 @@ export default {
 <style lang="less" scoped>
   .app-container{
     width: 100%;
-    height: calc(100vh -61px);
+    height: calc(100vh - 61px);
     background-color: #fff;
   }
 </style>
