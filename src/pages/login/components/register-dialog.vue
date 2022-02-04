@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import inputForm from "./input-form";
 import API from "@src/api/login";
+import inputForm from "./input-form";
 
 export default {
   name: "registerDialog",

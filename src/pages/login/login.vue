@@ -22,9 +22,9 @@
 </template>
 
 <script>
+import API from "@src/api/login";
 import registerDialog from "./components/register-dialog";
 import inputForm from "./components/input-form";
-import API from "@src/api/login";
 
 export default {
   name: "Login",
