@@ -1,7 +1,7 @@
 <template>
   <bg-container :bgStyle="bgStyle">
-    <el-page-header @back="goBack" content="详情页面"> </el-page-header>
-    <el-card shadow="hover">
+    <!-- <el-page-header @back="goBack" content="详情页面"> </el-page-header> -->
+    <el-card shadow="hover" v-loading="isLoading">
       <div class="poetry-container">
         <div class="container-title">诗词正文</div>
         <div class="poetry-title">{{ poetryInfo.title }}</div>
@@ -39,6 +39,7 @@ export default {
       poetryId: "",
       poetryInfo: {},
       textarea: "",
+      isLoading: true,
     };
   },
   components: {
@@ -50,6 +51,11 @@ export default {
       // 获取路由参数
       vm.poetryId = vm.$route.query.id;
     });
+    
+  },
+  // 离开路由回调
+  beforeRouteLeave(to, from, next) {
+    next();
   },
   methods: {
     // 查询诗词内容
@@ -61,6 +67,7 @@ export default {
         .then((res) => {
           if (res) {
             this.poetryInfo = res.data[0];
+            this.isLoading = false;
           }
         });
     },
@@ -119,6 +126,9 @@ export default {
   margin-top: 40px;
   /deep/ .el-card__body {
     padding: 0;
+  }
+  /deep/ .el-loading-mask{
+    background-color: #fff;
   }
 }
 

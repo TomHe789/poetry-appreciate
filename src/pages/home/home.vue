@@ -1,7 +1,6 @@
 <template>
-  <bg-container>
-    <page-menu></page-menu>
-    <div class="title">诗词总览</div>
+  <bg-container :bgStyle="bgStyle">
+    <page-title :titleStyle="titleStyle" titleContent="诗词总览"></page-title>
     <div class="poetry-list">
       <el-card
         class="poetry-item"
@@ -44,13 +43,19 @@
 
 <script>
 import API from "@src/api/home";
-import pageMenu from "@src/components/page-menu";
+import pageTitle from "@src/components/page-title";
 import bgContainer from "@src/components/bg-container";
 
 export default {
   name: "Home",
   data() {
     return {
+      bgStyle: {
+        background: "rgb(240,239,226)",
+      },
+      titleStyle: {
+        fontSize: "18px",
+      },
       poetryInfo: [],
       currentPage: 1,
       pageSize: 15,
@@ -83,10 +88,7 @@ export default {
       return res;
     },
   },
-  components: {
-    pageMenu,
-    bgContainer,
-  },
+  components: { pageTitle, bgContainer },
   watch: {
     // 查询页数发生改变时 重新查询
     currentPage() {
@@ -100,26 +102,6 @@ export default {
 </script>
 
 <style lang="less">
-.title {
-  height: 25px;
-  line-height: 25px;
-  font-size: 25px;
-  font-weight: bold;
-  margin: 10px 0;
-  padding: 10px 25px;
-  background-color: rgb(240, 239, 226);
-  &::before {
-    display: inline-block;
-    width: 3px;
-    height: 100%;
-    content: "";
-    background-color: rgb(84, 92, 100);
-    margin-right: 5px;
-    position: relative;
-    top: 3px;
-  }
-}
-
 .poetry-list {
   height: 690px;
   display: flex;
@@ -127,7 +109,6 @@ export default {
   flex-wrap: wrap;
   box-sizing: border-box;
   overflow: auto;
-  background-color: rgb(240, 239, 226);
 
   .poetry-item {
     width: 346px;
@@ -153,7 +134,6 @@ export default {
 .poetry-pagination {
   height: 50px;
   padding-top: 10px;
-  background-color: rgb(240, 239, 226);
   display: flex;
   justify-content: flex-end;
 }
@@ -214,5 +194,4 @@ export default {
 .el-pagination__jump {
   margin-left: 24px;
 }
-
 </style>

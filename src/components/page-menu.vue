@@ -1,17 +1,16 @@
 <template>
   <div class="menu-container">
     <el-menu
-      :default-active="activeIndex2"
+      :default-active="activeIndex"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
+      :router="true"
     >
-      <el-menu-item index="1">首页</el-menu-item>
-      <el-menu-item index="2">排行榜</el-menu-item>
-      <el-menu-item index="3">留言板</el-menu-item>
-      <el-menu-item index="4"></el-menu-item>
+      <el-menu-item index="/home">首页</el-menu-item>
+      <el-menu-item index="/rate">排行榜</el-menu-item>
+      <el-menu-item index="/message">留言板</el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -21,30 +20,17 @@ export default {
   name: "pageMenu",
   data() {
     return {
-      activeIndex: "1",
-      activeIndex2: "1",
+      activeIndex: "/home",
     };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      if (key == 1) {
-        this.$router.push("/home");
-      } else if (key == 2) {
-        this.$router.push("/rate");
-      } else if (key == 3) {
-        this.$router.push("/message");
-      }
-    },
-  },
+  }
 };
 </script>
 
 <style lang="less" scoped>
 .menu-container {
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
   background-color: #aaf;
-
   .el-menu-item{
     font-size: 18px;
   }

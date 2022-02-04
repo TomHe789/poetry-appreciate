@@ -6,16 +6,16 @@
 
 <script>
 export default {
-  name: 'bgContainer',
-  props: ['bgStyle']
-}
+  name: "bgContainer",
+  props: ["bgStyle"]
+};
 </script>
 
 <style lang="less" scoped>
-  .bg-container{
-    width: 60%;
-    min-height: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
+.bg-container {
+  width: 80%;
+  min-height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 </style>
