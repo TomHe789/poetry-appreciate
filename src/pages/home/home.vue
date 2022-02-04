@@ -1,19 +1,23 @@
 <template>
   <bg-container>
     <page-menu></page-menu>
-    <div class="title">唐诗三百首</div>
+    <div class="title">诗词总览</div>
     <div class="poetry-list">
-      <div class="poetry-item" v-for="(item, index) in poetryInfo">
+      <el-card
+        class="poetry-item"
+        shadow="hover"
+        v-for="(item, index) in poetryInfo"
+      >
         <span class="index-container">{{ poetryIndex(index) }}</span>
         <el-descriptions>
-          <div
+          <span
             class="item-title"
             :title="item.title"
             slot="title"
             @click="clickHandle($event, item.id)"
           >
             {{ item.title }}
-          </div>
+          </span>
           <el-descriptions-item label="作者">{{
             item.author
           }}</el-descriptions-item>
@@ -24,7 +28,7 @@
             <el-link @click="clickHandle($event, item.id)">查看详情</el-link>
           </el-descriptions-item>
         </el-descriptions>
-      </div>
+      </el-card>
     </div>
     <div class="poetry-pagination">
       <el-pagination
@@ -126,9 +130,13 @@ export default {
   background-color: rgb(240, 239, 226);
 
   .poetry-item {
-    width: 30%;
+    width: 346px;
     margin: 20px 18px;
     position: relative;
+
+    .el-card__body {
+      padding: 0;
+    }
 
     .index-container {
       position: absolute;
@@ -152,7 +160,6 @@ export default {
 
 .el-descriptions {
   background-color: #fff;
-  border: 1px solid #000;
   border-radius: 5px;
   .el-descriptions__header {
     padding-top: 18px;
@@ -180,8 +187,8 @@ export default {
     .el-descriptions__table {
       font-size: 16px;
 
-      .el-descriptions-item{
-        &:last-of-type{
+      .el-descriptions-item {
+        &:last-of-type {
           padding-left: 10px;
         }
       }
@@ -207,4 +214,5 @@ export default {
 .el-pagination__jump {
   margin-left: 24px;
 }
+
 </style>

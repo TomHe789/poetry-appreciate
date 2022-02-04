@@ -1,11 +1,25 @@
 <template>
   <bg-container :bgStyle="bgStyle">
     <el-page-header @back="goBack" content="详情页面"> </el-page-header>
-    <div class="poetry-container">
-      <div class="poetry-title">{{ poetryInfo.title }}</div>
-      <div class="poetry-author">{{ poetryInfo.author }}</div>
-      <div class="poetry-content">{{ poetryInfo.contents }}</div>
-    </div>
+    <el-card shadow="hover">
+      <div class="poetry-container">
+        <div class="container-title">诗词正文</div>
+        <div class="poetry-title">{{ poetryInfo.title }}</div>
+        <div class="poetry-author">{{ poetryInfo.author }}</div>
+        <div class="poetry-content">{{ poetryInfo.contents }}</div>
+      </div>
+    </el-card>
+    <el-card class="appreciate-container" shadow="hover">
+      <div class="container-title appreciate-title">诗词鉴赏</div>
+      <el-input
+        type="textarea"
+        :rows="8"
+        placeholder="请输入内容"
+        v-model="textarea"
+      >
+      </el-input>
+      <el-button>提交</el-button>
+    </el-card>
   </bg-container>
 </template>
 
@@ -17,10 +31,14 @@ export default {
   data() {
     return {
       bgStyle: {
-        background: "rgb(240,239,226)"
+        background: "rgb(240,239,226)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       },
       poetryId: "",
       poetryInfo: {},
+      textarea: "",
     };
   },
   components: {
@@ -64,6 +82,7 @@ export default {
 .el-page-header {
   background-color: rgb(84, 92, 100);
   height: 60px;
+  width: 100%;
   line-height: 60px;
   color: #fff;
 
@@ -93,16 +112,27 @@ export default {
     color: rgb(255, 208, 75);
   }
 }
+
+.el-card {
+  width: 70%;
+  padding: 20px;
+  margin-top: 40px;
+  /deep/ .el-card__body {
+    padding: 0;
+  }
+}
+
+.container-title {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .poetry-container {
-  border: 1px dashed #000;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px auto;
-  font-family: serif;
   padding: 30px;
-  width: 50%;
   min-height: 200px;
   box-sizing: border-box;
 
@@ -110,6 +140,7 @@ export default {
     font-size: 20px;
     font-weight: bold;
     white-space: pre-line;
+    font-family: serif;
   }
 
   .poetry-author {
@@ -119,6 +150,7 @@ export default {
   }
 
   .poetry-content {
+    font-family: serif;
     font-family: monospace;
     font-size: 20px;
     line-height: 40px;
@@ -126,5 +158,36 @@ export default {
     white-space: pre-line;
   }
 }
+
+.appreciate-container {
+  // background-color: #aff;
+  width: 70%;
+  padding: 20px;
+  padding-bottom: 50px;
+  margin: 70px 0;
+  position: relative;
+
+  .appreciate-title {
+    position: relative;
+    left: 30px;
+  }
+
+  .el-textarea {
+    width: 90%;
+    margin: 20px 30px;
+
+    /deep/ .el-textarea__inner{
+      font-size: 18px;
+      color: #000;
+    }
+  }
+
+  .el-button {
+    position: absolute;
+    right: 8%;
+    bottom: 10px;
+  }
+}
+
 </style>
 >
