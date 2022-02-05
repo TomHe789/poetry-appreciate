@@ -15,7 +15,7 @@
       >
     </div>
     <register-dialog
-      @showDialog="showDialog"
+      @changeShow="changeHandle"
       :dialogVisible="dialogVisible"
     ></register-dialog>
   </div>
@@ -36,7 +36,10 @@ export default {
   },
   methods: {
     showDialog() {
-      this.dialogVisible = !this.dialogVisible;
+      this.dialogVisible = true;
+    },
+    changeHandle(flag) {
+      this.dialogVisible = flag;
     },
     // 当表单数据通过校验时 取消禁用确认按钮
     validateForm(legal) {

@@ -1,7 +1,6 @@
 <template>
   <el-dialog
     title="账号注册"
-    ref="dialog"
     :visible.sync="isShow"
     @close="closeHandle"
   >
@@ -90,6 +89,7 @@ export default {
     closeHandle() {
       // 清空弹窗数据
       this.isClearFormData = !this.isClearFormData;
+      this.$emit('changeShow', false)
     },
     // 当表单数据通过校验时 取消禁用确认按钮
     validateForm(legal) {
@@ -99,7 +99,7 @@ export default {
   computed: {},
   watch: {
     dialogVisible() {
-      this.isShow = !this.isShow;
+      this.isShow = this.dialogVisible;
     },
   },
   components: {

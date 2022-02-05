@@ -11,18 +11,43 @@
       <el-menu-item index="/home">首页</el-menu-item>
       <el-menu-item index="/rate">排行榜</el-menu-item>
       <el-menu-item index="/message">留言板</el-menu-item>
+      <el-button type="primary" icon="el-icon-search" @click="clickHandle"
+        >搜索诗词</el-button
+      >
     </el-menu>
+    <search-dialog
+      :dialogVisible="dialogVisible"
+      dialogTitle="搜索框"
+      @changeShow="changeHandle"
+    >
+      <el-input v-model="input" placeholder="请输入诗词名称"></el-input>
+    </search-dialog>
   </div>
 </template>
 
 <script>
+import searchDialog from "@src/components/search-dialog";
+
 export default {
   name: "pageMenu",
   data() {
     return {
       activeIndex: "/home",
+      dialogVisible: false,
+      input: '',
     };
-  }
+  },
+  methods: {
+    clickHandle() {
+      this.dialogVisible = true;
+    },
+    changeHandle(flag) {
+      this.dialogVisible = flag;
+    },
+  },
+  components: {
+    searchDialog,
+  },
 };
 </script>
 
@@ -31,8 +56,13 @@ export default {
   width: 80%;
   margin: 0 auto;
   background-color: #aaf;
-  .el-menu-item{
+  .el-menu-item {
     font-size: 18px;
+  }
+  .el-button {
+    position: relative;
+    top: 10px;
+    left: 50px;
   }
 }
 </style>
