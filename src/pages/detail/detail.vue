@@ -1,7 +1,10 @@
 <template>
   <bg-container :bgStyle="bgStyle">
+    <div class="back-button">
+      <el-button icon="el-icon-arrow-left" @click="goBack">返回</el-button>
+    </div>
     <!-- <el-page-header @back="goBack" content="详情页面"> </el-page-header> -->
-    <el-card shadow="hover" v-loading="isLoading">
+    <el-card shadow="hover">
       <div class="poetry-container">
         <div class="container-title">诗词正文</div>
         <div class="poetry-title">{{ poetryInfo.title }}</div>
@@ -35,11 +38,11 @@ export default {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        position: "relative",
       },
       poetryId: "",
       poetryInfo: {},
       textarea: "",
-      isLoading: true,
     };
   },
   components: {
@@ -51,7 +54,6 @@ export default {
       // 获取路由参数
       vm.poetryId = vm.$route.query.id;
     });
-    
   },
   // 离开路由回调
   beforeRouteLeave(to, from, next) {
@@ -67,7 +69,6 @@ export default {
         .then((res) => {
           if (res) {
             this.poetryInfo = res.data[0];
-            this.isLoading = false;
           }
         });
     },
@@ -120,14 +121,22 @@ export default {
   }
 }
 
+.back-button {
+  .el-button {
+    position: absolute;
+    left: 60px;
+    top: 30px;
+  }
+}
+
 .el-card {
   width: 70%;
   padding: 20px;
-  margin-top: 40px;
+  margin-top: 100px;
   /deep/ .el-card__body {
     padding: 0;
   }
-  /deep/ .el-loading-mask{
+  /deep/ .el-loading-mask {
     background-color: #fff;
   }
 }
@@ -186,7 +195,7 @@ export default {
     width: 90%;
     margin: 20px 30px;
 
-    /deep/ .el-textarea__inner{
+    /deep/ .el-textarea__inner {
       font-size: 18px;
       color: #000;
     }
@@ -198,6 +207,5 @@ export default {
     bottom: 10px;
   }
 }
-
 </style>
 >

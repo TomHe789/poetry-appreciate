@@ -4,33 +4,39 @@
       :titleStyle="titleStyle"
       titleContent="近一周诗词点击排行榜"
     ></page-title>
-    <el-card class="table-container" shadow="always">
-      <el-table :data="sortedData" style="width: 100%">
-        <el-table-column
-          type="index"
-          :index="indexMethod"
-          label="序号"
-          width="180"
+    <div class="main-container">
+      <el-card class="table-container" shadow="hover">
+        <el-table :data="sortedData" style="width: 100%" :row-style="{cursor: 'pointer'}"
+            @row-click="clickHandle">
+          <el-table-column
+            type="index"
+            :index="indexMethod"
+            label="序号"
+            width="150"
+            fixed
+          >
+          </el-table-column>
+          <el-table-column prop="title" label="名称"  width="250" fixed>
+          </el-table-column>
+          <el-table-column prop="views" label="访问量" width="150" >
+          </el-table-column>
+          <el-table-column prop="author" label="作者" width="150">
+          </el-table-column>
+          <el-table-column prop="type" label="类型"> </el-table-column width="150">
+          <el-table-column prop="id" label="诗词id"> </el-table-column width="150">
+          
+          
+        </el-table>
+      </el-card>
+      <div class="poetry-pagination">
+        <el-pagination
+          layout="prev, pager, next, jumper, total"
+          :current-page.sync="currentPage"
+          :page-size="pageSize"
+          :total="319"
         >
-        </el-table-column>
-        <el-table-column prop="views" label="访问量" width="180">
-        </el-table-column>
-        <el-table-column prop="author" label="作者" width="180">
-        </el-table-column>
-        <el-table-column prop="type" label="类型"> </el-table-column width="180">
-        <el-table-column prop="title" label="名称" >
-        </el-table-column>
-        
-      </el-table>
-    </el-card>
-    <div class="poetry-pagination">
-      <el-pagination
-        layout="prev, pager, next, jumper, total"
-        :current-page.sync="currentPage"
-        :page-size="pageSize"
-        :total="319"
-      >
-      </el-pagination>
+        </el-pagination>
+      </div>
     </div>
   </bg-container>
 </template>
@@ -72,6 +78,11 @@ export default {
       let res = this.pageSize * (this.currentPage - 1) + index+1;
       return res;
     },
+    // 点击行 回调
+    clickHandle(row, column, event){
+      // 跳转路由 传递诗词id
+      this.$router.push({ path: "/detail", query: { id: row.id } });
+    }
   },
   components: {
     pageTitle,
@@ -90,21 +101,33 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.table-container {
-  width: 70%;
-  height: 550px;
-  margin-top: 20px;
-  margin-left: 25px;
 
-  /deep/ .el-card__body {
-    padding: 10px 20px;
+.main-container {
+  width: 80%;
+
+  .table-container {
+    height: 550px;
+    margin-top: 20px;
+    margin-left: 25px;
+
+    /deep/ .el-card__body {
+      padding: 10px 20px;
+    }
+    /deep/ .el-table__cell{
+      text-align: center;
+    }
+    /deep/ .el-table_1_column_2,
+    /deep/ .el-table_1_column_3{
+      font-weight: bold;
+    }
+
+  }
+  .poetry-pagination {
+    height: 50px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: flex-end;
   }
 }
-.poetry-pagination {
-  width: 70%;
-  height: 50px;
-  padding-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-}
+
 </style>
