@@ -1,21 +1,22 @@
+项目所用技术栈：
 
++ 前端：vue+elmment-UI
++ 后端：express+mysql
 
-2022年1月24日21:26:18
+项目源码：
 
-1. 创建vue项目  ``vue create poetry-apprication``
-2. 安装路由 ``npm i vue-router`` 
-2. 安装饿了么UI组件库 ``npm i element-ui`` 
++ 前端代码：code/poetry-appreciate-web
++ 后端代码：codepoetry-appreciate-app
++ 数据库：code/sql
 
-2022年2月1日19:25:37
+启动项目：
 
-4. 完善登录注册页面
-4. 登录注册页面控住注册弹窗data未同步（待优化）
-4. 优化前端登录校验
-4. 注册登录组件提取
++ 导入数据库
 
-2022年2月3日11:25:32
++ 启动前端服务：``npm run start``
++ 启动后端服务：``npm run start``
 
-8. 完善注册登录后端接口
- 9. 注册登录前后端联调
- 10. 使用vuex保存登录状态
+登录页默认用户名密码 
 
++ username：admin 
++ password：123456

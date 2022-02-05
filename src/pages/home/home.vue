@@ -101,7 +101,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .poetry-list {
   height: 690px;
   display: flex;
@@ -115,8 +115,8 @@ export default {
     margin: 20px 18px;
     position: relative;
 
-    .el-card__body {
-      padding: 0;
+    /deep/ .el-card__body {
+      padding: 7px;
     }
 
     .index-container {
@@ -148,11 +148,11 @@ export default {
 
     .el-descriptions__title {
       width: 80%;
+
       .item-title {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
         font-size: 18px;
+        margin-left: 45px;
+
         &:hover {
           text-decoration: underline;
           cursor: pointer;
@@ -172,16 +172,14 @@ export default {
           padding-left: 10px;
         }
       }
-
-      .el-descriptions-item__container {
-        span {
-          margin-right: 2px;
-        }
-      }
     }
   }
-  .el-descriptions-row {
+  /deep/ .el-descriptions-row {
     .el-descriptions-item {
+      &:first-of-type {
+        padding-left: 10px;
+      }
+
       &:last-of-type {
         .el-descriptions-item__label {
           display: none;
@@ -193,5 +191,12 @@ export default {
 
 .el-pagination__jump {
   margin-left: 24px;
+}
+
+/deep/ .el-descriptions-item__container {
+  align-items: center;
+  span {
+    margin-right: 4px;
+  }
 }
 </style>
