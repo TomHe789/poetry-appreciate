@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="app-container">
-    <page-menu :activeIndex="activeIndex"></page-menu>
+  <div id="app" class="app-container" :style="getContainerHeight()">
+    <page-menu v-if="this.$route.path !== '/login'" :activeIndex="activeIndex"></page-menu>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -20,6 +20,15 @@ export default {
       activeIndex: "/home",
     };
   },
+  methods: {
+    getContainerHeight(){
+      if(this.$route.path === '/login') {
+        return {
+          height: '100%'
+        }
+      }
+    }
+  },
   components: {
     pageMenu
   },
@@ -31,7 +40,7 @@ export default {
 <style lang="less" scoped>
   .app-container{
     width: 100%;
-    height: calc(100vh - 61px);
+    height: calc(100% - 61px);
     background-color: #fff;
   }
 </style>

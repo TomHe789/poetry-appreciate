@@ -20,13 +20,14 @@
       dialogTitle="搜索框"
       @changeShow="changeHandle"
     >
-      <el-input v-model="input" placeholder="请输入诗词名称"></el-input>
+      <search-input @changeShow="changeHandle"></search-input>
     </search-dialog>
   </div>
 </template>
 
 <script>
 import searchDialog from "@src/components/search-dialog";
+import searchInput from "@src/components/search-input";
 
 export default {
   name: "pageMenu",
@@ -34,7 +35,6 @@ export default {
     return {
       activeIndex: "/home",
       dialogVisible: false,
-      input: '',
     };
   },
   methods: {
@@ -47,6 +47,7 @@ export default {
   },
   components: {
     searchDialog,
+    searchInput
   },
 };
 </script>
