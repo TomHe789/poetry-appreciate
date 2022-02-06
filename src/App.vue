@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="app-container" :style="getContainerHeight()">
-    <page-menu v-if="this.$route.path !== '/login'" :activeIndex="activeIndex"></page-menu>
+    <page-menu v-if="isShowMenu()" :activeIndex="activeIndex"></page-menu>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -21,8 +21,11 @@ export default {
     };
   },
   methods: {
+    isShowMenu(){
+      return this.$route.path !== '/login'
+    },
     getContainerHeight(){
-      if(this.$route.path === '/login') {
+      if(!this.isShowMenu()) {
         return {
           height: '100%'
         }

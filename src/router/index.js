@@ -8,7 +8,7 @@ import Message from "@src/pages/message/message.vue";
 import NotFound from "@src/pages/404/notFound.vue";
 
 const routes = [
-  { path: "/", name: "home", redirect: "/home" },
+  { path: "/", name: "login", redirect: "/login" },
   { path: "/login", name: "login", component: Login },
   { path: "/home", name: "home", component: Home },
   { path: "/detail", name: "detail", component: Detail },

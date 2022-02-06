@@ -60,7 +60,7 @@ export default {
             type: "success",
           });
           sessionStorage.setItem("userName", formInfo.username);
-          this.$store.dispatch('setUser', formInfo.username)
+          this.$store.dispatch("setUser", formInfo.username);
           this.$router.push("/home");
         } else {
           this.$message.error("用户名或密码错误，请检查后重新输入");
@@ -68,10 +68,15 @@ export default {
       });
     },
   },
-  watch: {},
   components: {
     registerDialog,
     inputForm,
+  },
+  beforeRouteEnter: (to, from, next) => {
+    // 更改登录态
+    next((vm) => {
+      vm.$store.dispatch("setUser", null);
+    });
   },
 };
 </script>
