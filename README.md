@@ -5,18 +5,18 @@
 
 项目源码：
 
-+ 前端代码：code/poetry-appreciate-web
-+ 后端代码：codepoetry-appreciate-app
-+ 数据库：code/sql
++ 前端代码：https://github.com/TomHe789/poetry-appreciation-web
++ 后端代码：https://github.com/TomHe789/poetry-appreciation-app
++ 数据库文件：poetry-appreciation-app/sql/poetry_apprication.sql
 
 启动项目：
 
 + 导入数据库
-+ 启动前端项目：
++ 启动后端服务：
   + 安装依赖 ``npm i``
   + 运行项目 ``npm run start``
 
-+ 启动后端服务：
++ 启动前端项目：
   + 安装依赖 ``npm i``
   + 运行项目 ``npm run start``
 
