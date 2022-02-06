@@ -14,6 +14,7 @@
           </el-input>
           <div class="note-tips">
             <span>发布人：{{ item.author }}</span>
+            <span :title="item.poetry_title">诗词：{{ item.poetry_title }}</span>
             <el-tag>{{ formattTime(item.time) }}</el-tag>
           </div>
         </div>
@@ -89,11 +90,21 @@ export default {
     }
 
     .note-tips {
-      width: 280px;
+      width: 500px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 20px 0;
+
+      span {
+        white-space: nowrap;
+
+        &:nth-of-type(2) {
+          width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
   }
 }

@@ -40,7 +40,7 @@ export default {
   name: "pageMenu",
   data() {
     return {
-      activeIndex: "/home",
+      activeIndex: this.$route.path,
       dialogVisible: false,
       circleUrl:
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
@@ -54,14 +54,12 @@ export default {
       this.dialogVisible = flag;
     },
     isLogin() {
-      console.log('当前登录用户', sessionStorage.getItem("userName"))
       // 通过sessionStorage 设置vuex的isLogin状态
       if (sessionStorage.getItem("userName") !== 'null') {
         this.$store.commit("userStatus", sessionStorage.getItem("userName"));
       } else {
         this.$store.commit("userStatus", null);
       }
-      console.log("当前用户", this.$store.getters.currentUser);
       return this.$store.getters.isLogin;
     },
   },
