@@ -45,25 +45,22 @@ export default {
     validateForm(legal) {
       this.isDisabled = !legal;
     },
+    // 登录校验
     async isAuthLogin() {
-      let { username, password } = this.$refs.inputForm.formInfo;
-      let flag = false;
-      let res = await this.$http.get(API.getUserInfo);
-      console.log(res.data);
-      res.data.forEach((item, index) => {
-        if (item.username === username && item.password === password) {
-          flag = true;
-        }
-      });
-      return flag;
+      let { formInfo } = this.$refs.inputForm;
+      let res = await this.$http.post(API.isAuthLogin, formInfo);
+      return res;
     },
     clickHandle() {
       this.isAuthLogin().then((res) => {
-        if (res) {
+        let { formInfo } = this.$refs.inputForm;
+        if (res.data.code === 1) {
           this.$message({
             message: "恭喜您，登录成功！",
             type: "success",
           });
+          sessionStorage.setItem("userName", formInfo.username);
+          this.$store.dispatch('setUser', formInfo.username)
           this.$router.push("/home");
         } else {
           this.$message.error("用户名或密码错误，请检查后重新输入");
