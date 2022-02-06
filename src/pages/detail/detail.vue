@@ -18,16 +18,17 @@
         type="textarea"
         :rows="8"
         placeholder="请输入内容"
-        v-model="textarea"
+        v-model="content"
       >
       </el-input>
-      <el-button>提交</el-button>
+      <el-button @click="clickHandle">提交</el-button>
     </el-card>
   </bg-container>
 </template>
 
 <script>
 import API from "@src/api/detail";
+import moment from 'moment'
 import bgContainer from "@src/components/bg-container";
 export default {
   name: "detail",
@@ -42,7 +43,7 @@ export default {
       },
       poetryId: "",
       poetryInfo: {},
-      textarea: "",
+      content: "",
     };
   },
   components: {
@@ -76,6 +77,24 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
+    clickHandle(){
+      let messageData = {
+        content: this.content,
+        author: this.$store.getters.currentUser,
+        poetry_title: this.poetryInfo.title,
+        time: moment().format('YYYY-MM-DD HH:mm:ss')
+      }
+      this.$http.post(API.addUserMessage, messageData)
+        .then((res) => {
+          if(res) {
+            this.$message({
+            message: "留言成功！",
+            type: "success",
+          });
+          this.content = ""
+          }
+        })
+    }
   },
   watch: {
     // poetryId 发生变化时 重新查询数据

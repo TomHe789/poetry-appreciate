@@ -14,11 +14,16 @@
           </el-input>
           <div class="note-tips">
             <span>发布人：{{ item.author }}</span>
-            <span :title="item.poetry_title">诗词：{{ item.poetry_title }}</span>
+            <span :title="item.poetry_title"
+              >诗词：{{ item.poetry_title }}</span
+            >
             <el-tag>{{ formattTime(item.time) }}</el-tag>
           </div>
         </div>
       </el-card>
+      <template v-if="noteInfo.length === 0">
+        <div class="note-text">暂无留言</div>
+      </template>
     </div>
   </bg-container>
 </template>
@@ -46,7 +51,7 @@ export default {
     queryNoteInfo() {
       this.$http.get(API.getUserMessage).then((res) => {
         if (res) {
-          this.noteInfo = res.data;
+          this.noteInfo = res.data.reverse();
         }
       });
     },
@@ -61,6 +66,11 @@ export default {
   },
   mounted() {
     this.queryNoteInfo();
+  },
+  beforeRouteEnter(from, to, next) {
+    next((vm) => {
+      vm.queryNoteInfo();
+    });
   },
 };
 </script>
@@ -106,6 +116,16 @@ export default {
         }
       }
     }
+  }
+
+  .note-text {
+    font-size: 25px;
+    padding: 20px;
+    letter-spacing: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #888;
+    height: 700px;
   }
 }
 
