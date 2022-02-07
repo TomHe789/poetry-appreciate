@@ -50,8 +50,10 @@ export default {
       };
     },
     handleSelect(item) {
+      console.log('handleselect', item.id)
       this.$emit("changeShow", false);
       // 跳转路由 传递诗词id
+      // this.$router.push("/home");
       this.$router.push({ path: "/detail", query: { id: item.id } });
     },
   },

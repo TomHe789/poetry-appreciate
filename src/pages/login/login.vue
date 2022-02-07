@@ -58,12 +58,17 @@ export default {
           this.$message({
             message: "恭喜您，登录成功！",
             type: "success",
+            showClose: true,
           });
           sessionStorage.setItem("userName", formInfo.username);
           this.$store.dispatch("setUser", formInfo.username);
           this.$router.push("/home");
         } else {
-          this.$message.error("用户名或密码错误，请检查后重新输入");
+          this.$message({
+            message: "用户名或密码错误，请检查后重新输入",
+            type: "error",
+            showClose: true,
+          });
         }
       });
     },

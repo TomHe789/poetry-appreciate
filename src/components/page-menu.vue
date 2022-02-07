@@ -55,7 +55,7 @@ export default {
     },
     isLogin() {
       // 通过sessionStorage 设置vuex的isLogin状态
-      if (sessionStorage.getItem("userName") !== 'null') {
+      if (sessionStorage.getItem("userName") !== null) {
         this.$store.commit("userStatus", sessionStorage.getItem("userName"));
       } else {
         this.$store.commit("userStatus", null);

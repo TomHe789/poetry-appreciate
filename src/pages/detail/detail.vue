@@ -28,7 +28,7 @@
 
 <script>
 import API from "@src/api/detail";
-import moment from 'moment'
+import moment from "moment";
 import bgContainer from "@src/components/bg-container";
 export default {
   name: "detail",
@@ -49,17 +49,6 @@ export default {
   components: {
     bgContainer,
   },
-  // 进入路由回调
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      // 获取路由参数
-      vm.poetryId = vm.$route.query.id;
-    });
-  },
-  // 离开路由回调
-  beforeRouteLeave(to, from, next) {
-    next();
-  },
   methods: {
     // 查询诗词内容
     queryPoetryContent() {
@@ -77,30 +66,37 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    clickHandle(){
+    clickHandle() {
       let messageData = {
         content: this.content,
         author: this.$store.getters.currentUser,
         poetry_title: this.poetryInfo.title,
-        time: moment().format('YYYY-MM-DD HH:mm:ss')
-      }
-      this.$http.post(API.addUserMessage, messageData)
-        .then((res) => {
-          if(res) {
-            this.$message({
+        time: moment().format("YYYY-MM-DD HH:mm:ss"),
+      };
+      this.$http.post(API.addUserMessage, messageData).then((res) => {
+        if (res) {
+          this.$message({
             message: "留言成功！",
             type: "success",
+            showClose: true,
           });
-          this.content = ""
-          }
-        })
-    }
+          this.content = "";
+        }
+      });
+    },
   },
   watch: {
     // poetryId 发生变化时 重新查询数据
     poetryId() {
       this.queryPoetryContent();
     },
+  },
+  mounted() {
+    this.poetryId = this.$route.query.id;
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.poetryId = to.query.id;
+    next();
   },
 };
 </script>

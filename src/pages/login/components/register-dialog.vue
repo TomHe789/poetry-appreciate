@@ -54,18 +54,24 @@ export default {
       this.$message({
         message: "恭喜你，注册成功",
         type: "success",
+        showClose: true,
       });
       this.isShow = false;
     },
     // 注册失败
     registerFail() {
-      this.$message.error("注册失败，请稍后重试");
+      this.$message({
+            message: "注册失败，请稍后重试",
+            type: "error",
+            showClose: true,
+          });
     },
     // 用户名重复
     usernameRepet() {
       this.$message({
         message: "用户名重复，请重新输入用户名",
         type: "warning",
+        showClose: true,
       });
     },
     // 提交按钮回调

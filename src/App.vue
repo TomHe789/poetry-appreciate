@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app-container" :style="getContainerHeight()">
     <page-menu v-if="isShowMenu()" :activeIndex="activeIndex"></page-menu>
-    <keep-alive>
+    <keep-alive exclude="detail">
       <router-view></router-view>
     </keep-alive>
   </div>
